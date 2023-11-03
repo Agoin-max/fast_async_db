@@ -32,4 +32,9 @@ app.include_router(user_router)
 
 
 app.include_router(health_router, prefix="/v1/public/health", tags=["Health, Public"])
-app.include_router(health_router, prefix="/v1/health", tags=["Health, Bearer"], dependencies=[Depends(AuthBearer())])
+app.include_router(
+    health_router,
+    prefix="/v1/health",
+    tags=["Health, Bearer"],
+    dependencies=[Depends(AuthBearer())],
+)
