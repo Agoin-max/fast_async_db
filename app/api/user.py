@@ -9,7 +9,7 @@ from app.services.auth import create_access_token
 router = APIRouter(prefix="/v1/user")
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED, response_model=UserResponse)
+@router.post("/create", status_code=status.HTTP_201_CREATED, response_model=UserResponse)
 async def create_user(payload: UserSchema, request: Request, db_session: AsyncSession = Depends(get_db)):
     _user: User = User(**payload.model_dump())
     await _user.save(db_session)
