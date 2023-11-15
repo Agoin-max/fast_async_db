@@ -20,7 +20,7 @@ from app.config import settings
 # access to the values within the .ini file in use.
 config = context.config
 
-config.set_main_option("sqlalchemy.url", settings.asyncpg_url.unicode_string())
+config.set_main_option("sqlalchemy.url", settings.ASYNCPG_URL.unicode_string())
 
 # this is
 alembic_section = config.get_section("alembic:exclude")

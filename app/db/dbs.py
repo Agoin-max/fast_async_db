@@ -9,7 +9,7 @@ from app.utils.logging import AppLogger
 logger = AppLogger.__call__().get_logger()
 
 engine = create_async_engine(
-    global_settings.asyncpg_url.unicode_string(),
+    global_settings.ASYNCPG_URL.unicode_string(),
     future=True,
     echo=True,
 )

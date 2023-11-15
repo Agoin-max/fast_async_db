@@ -31,11 +31,11 @@ class AuthBearer(HTTPBearer):
 async def create_access_token(user: User, request: Request):
     _payload = {
         "email": user.email,
-        "expiry": time.time() + global_settings.jwt_expire,
+        "expiry": time.time() + global_settings.JWT_EXPIRE,
         "platform": request.headers.get("User-Agent"),
     }
-    _token = jwt.encode(_payload, str(user.password), algorithm=global_settings.jwt_algorithm)
+    _token = jwt.encode(_payload, str(user.password), algorithm=global_settings.JWT_ALGORITHM)
 
-    _bool = await request.app.state.redis.set(_token, str(_payload), ex=global_settings.jwt_expire)
+    _bool = await request.app.state.redis.set(_token, str(_payload), ex=global_settings.JWT_EXPIRE)
     if _bool:
         return _token
